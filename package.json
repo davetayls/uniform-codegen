@@ -1,5 +1,5 @@
 {
-  "name": "uniform-codegen",
+  "name": "@davetayls/uniform-codegen",
   "version": "1.0.0",
   "description": "TypeScript Codegen for Uniform Components",
   "main": "index.js",
@@ -9,6 +9,11 @@
   "bin": {
     "uniform-codegen": "./cli.js"
   },
+  "files": [
+    "/lib",
+    "cli.js",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
