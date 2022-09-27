@@ -1,0 +1,39 @@
+{
+  "name": "uniform-codegen",
+  "version": "1.0.0",
+  "description": "TypeScript Codegen for Uniform Components",
+  "main": "index.js",
+  "repository": "https://github.com/davetayls/uniform-codegen.git",
+  "author": "davetayls <dave.taylor@pogokid.com>",
+  "license": "MIT",
+  "bin": {
+    "uniform-codegen": "./cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.7",
+    "@types/glob": "^8.0.0",
+    "@types/jest": "^29.0.3",
+    "@types/js-yaml": "^4.0.5",
+    "@types/lodash": "^4.14.185",
+    "@types/node": "^18.7.21",
+    "@types/yargs": "^17.0.13",
+    "jest": "^29.0.3",
+    "prettier": "^2.7.1",
+    "ts-jest": "^29.0.2",
+    "typescript": "^4.8.3"
+  },
+  "dependencies": {
+    "@uniformdev/canvas": "^17.2.0",
+    "debug": "^4.3.4",
+    "dotenv": "^16.0.2",
+    "glob": "^8.0.3",
+    "js-yaml": "^4.1.0",
+    "lodash": "^4.17.21",
+    "yargs": "^17.5.1"
+  }
+}
