@@ -1,27 +1,44 @@
 import { ParameterWriter } from './types'
-import * as contenfulEntry from './codegen/contenfulEntry'
-import * as bigcommerceProduct from './codegen/bigcommerceProduct'
+import * as contentful from './integrations/contentful'
+import * as bigcommerce from './integrations/bigcommerce'
+import * as graphcms from './integrations/graphcms'
 import { ComponentDefinitionParameter } from '@uniformdev/canvas'
 import { CodeWriterState, initWriter } from './writer'
+import { selectParameter } from './internal/selectParameter'
+import { textParameter } from './internal/textParameter'
+import { numberParameter } from './internal/numberParameter'
+import { checkboxParameter } from './internal/checkboxParameter'
 
 export const basicParameterTypeMap = new Map<
   string,
   ParameterWriter
 >([
-  ['text', ({ id }) => initWriter([`  ${id}: string`])],
+  // internal
+  ['text', textParameter],
+  ['number', numberParameter],
+  ['checkbox', checkboxParameter],
+  ['select', selectParameter],
   ['intentTag', ({ id }) => initWriter([`  ${id}: unknown`])],
-  ['contentfulEntry', contenfulEntry.basic],
-  ['bigcommerceProduct', bigcommerceProduct.basic],
+  // integrations (ideally these should be loaded from external packages)
+  ['bigcommerceProduct', bigcommerce.basic],
+  ['contentfulEntry', contentful.basic],
+  ['graphcms-entry', graphcms.basic],
 ])
 
 export const enhancedParameterTypeMap = new Map<
   string,
   ParameterWriter
 >([
-  ['text', ({ id }) => initWriter([`  ${id}: string`])],
+  // internal
+  ['text', textParameter],
+  ['number', numberParameter],
+  ['checkbox', checkboxParameter],
+  ['select', selectParameter],
   ['intentTag', ({ id }) => initWriter([`  ${id}: unknown`])],
-  ['contentfulEntry', contenfulEntry.enhanced],
-  ['bigcommerceProduct', bigcommerceProduct.enhanced],
+  // integrations (ideally these should be loaded from external packages)
+  ['bigcommerceProduct', bigcommerce.enhanced],
+  ['contentfulEntry', contentful.enhanced],
+  ['graphcms-entry', graphcms.enhanced],
 ])
 
 export function parameterLine(

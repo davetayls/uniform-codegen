@@ -20,7 +20,7 @@ export function basic(param: ComponentDefinitionParameter) {
 
 export function enhanced(param: ComponentDefinitionParameter) {
   const writer = initWriter()
-  pushImport(writer, './contentful', 'contentfulgen')
+  pushImport(writer, './contentful', 'contentfulCodegen')
   const { typeConfig } =
     param as ComponentDefinitionParameter<ContentfulTypeConfig>
   if (!typeConfig || isEmpty(typeConfig?.allowedContentTypes)) {
@@ -28,7 +28,7 @@ export function enhanced(param: ComponentDefinitionParameter) {
   } else {
     const types = typeConfig.allowedContentTypes
     const typesString = Object.keys(types)
-      .map((t) => `contentfulgen.I${types[t].name}`)
+      .map((t) => `contentfulCodegen.I${types[t].name}`)
       .join(' | ')
     return pushWriterLines(writer, [
       `  ${param.id}: ${typesString}`,

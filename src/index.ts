@@ -1,6 +1,6 @@
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
-import { genCommand } from './commands/genCommand'
+import { componentsCommand } from './commands/componentsCommand'
 
 require('dotenv').config()
 require('dotenv').config({ path: '.env.local' })
@@ -13,5 +13,5 @@ yargs(hideBin(process.argv))
   })
   .strictCommands()
   .demandCommand(1)
-  .command(genCommand)
+  .command(componentsCommand)
   .parse()

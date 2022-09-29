@@ -20,9 +20,6 @@ export function basicComponentWriter({
     'ComponentParameter',
     'ComponentInstance',
   ])
-  pushImport(writer, '@uniformdev/canvas-react', [
-    'ComponentProps',
-  ])
   const componentPrefix = `${idCase(id)}Component`
   pushWriterLines(writer, [
     `export type ${componentPrefix}Fields = {`,
