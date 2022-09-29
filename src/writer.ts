@@ -51,7 +51,7 @@ export function renderWriterImportsToString(
     .map((entry) =>
       Array.isArray(entry[1])
         ? `import { ${entry[1].join(', ')} } from '${entry[0]}'`
-        : `import ${entry[1]} from '${entry[0]}'`
+        : `import * as ${entry[1]} from '${entry[0]}'`
     )
     .join('\n')
 }
