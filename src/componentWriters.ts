@@ -23,12 +23,14 @@ export function basicComponentWriter({
   const componentPrefix = `${idCase(id)}Component`
   pushWriterLines(writer, [
     `export type ${componentPrefix}Fields = {`,
-    '  intentTag?: ComponentParameter<IntentTags>',
+  ])
+  writer = mergeWriters([
+    writer,
+    ...parameters.map((param) => parameterLine(param, false)),
   ])
   pushWriterLines(writer, ['}'])
   pushWriterLines(writer, [
     `export type ${componentPrefix}EnhancedFields = {`,
-    `  intentTag?: ComponentParameter<IntentTags>`,
   ])
   writer = mergeWriters([
     writer,

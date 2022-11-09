@@ -13,9 +13,15 @@ export type ContentfulTypeConfig = {
 }
 
 export function basic(param: ComponentDefinitionParameter) {
-  return initWriter([
-    `  ${param.id}: ComponentParameter<EntrySelectorParameterValue>`,
+  const writer = initWriter([
+    `  ${param.id}: ComponentParameter<canvasContentful.EntrySelectorParameterValue>`,
   ])
+  pushImport(
+    writer,
+    '@uniformdev/canvas-contentful',
+    'canvasContentful'
+  )
+  return writer
 }
 
 export function enhanced(param: ComponentDefinitionParameter) {

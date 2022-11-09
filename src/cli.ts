@@ -15,7 +15,6 @@ import { EntrySelectorParameterValue } from '@uniformdev/canvas-contentful'
 import contentfulgen from './contentful'
 import bigcommerce from '@uniformdev/canvas-bigcommerce'
 
-export type IntentTags = { intents: Record<string, { str: number }> }
 `
   )
   const f = await readComponentsFromDir(COMPONENTS_ROOT)
@@ -23,7 +22,6 @@ export type IntentTags = { intents: Record<string, { str: number }> }
     const componentPrefix = `${idCase(id)}Component`
     writer.push(`
 export type ${componentPrefix}Fields = {
-  intentTag?: ComponentParameter<IntentTags>
 ${parameters
   .map((param) => parameterLine(param, false))
   .join('\n')}
@@ -31,7 +29,6 @@ ${parameters
     `)
     writer.push(`
 export type ${componentPrefix}EnhancedFields = {
-  intentTag?: ComponentParameter<IntentTags>
 ${parameters
   .map((param) => parameterLine(param, true))
   .join('\n')}

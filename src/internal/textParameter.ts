@@ -6,7 +6,15 @@ export type TextParameter = ComponentDefinitionParameter<{
   required: boolean
 }>
 
-export const textParameter: ParameterWriter = ({
+export const basic: ParameterWriter = ({ id, typeConfig }) => {
+  const { required } =
+    (typeConfig as TextParameter['typeConfig']) ?? {}
+  return initWriter([
+    `  ${id}${required ? '?' : ''}: ComponentParameter<string>`,
+  ])
+}
+
+export const enhanced: ParameterWriter = ({
   id,
   typeConfig,
 }) => {

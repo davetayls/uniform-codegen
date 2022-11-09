@@ -18,9 +18,15 @@ export type ContentfulTypeConfig = {
 export const basic: ParameterWriter = (
   param: ComponentDefinitionParameter
 ) => {
-  return initWriter([
-    `${param.id}: ComponentParameter<EntrySelectorParameterValue>`,
+  const writer = initWriter([
+    `  ${param.id}: ComponentParameter<canvasGraphCMS.EntrySelectorParameterValue>`,
   ])
+  pushImport(
+    writer,
+    '@uniformdev/canvas-graphcms',
+    'canvasGraphCMS'
+  )
+  return writer
 }
 
 export const enhanced: ParameterWriter = (
@@ -42,7 +48,7 @@ export const enhanced: ParameterWriter = (
       .join(' | ')
 
     return pushWriterLines(writer, [
-      `  ${param.id}: ${modelTypesUnion}`,
+      `  ${param.id}: Array<${modelTypesUnion}>`,
     ])
   }
 }

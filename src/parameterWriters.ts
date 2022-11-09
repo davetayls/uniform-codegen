@@ -4,20 +4,20 @@ import * as bigcommerce from './integrations/bigcommerce'
 import * as graphcms from './integrations/graphcms'
 import { ComponentDefinitionParameter } from '@uniformdev/canvas'
 import { CodeWriterState, initWriter } from './writer'
-import { selectParameter } from './internal/selectParameter'
-import { textParameter } from './internal/textParameter'
-import { numberParameter } from './internal/numberParameter'
-import { checkboxParameter } from './internal/checkboxParameter'
+import * as selectParameter from './internal/selectParameter'
+import * as textParameter from './internal/textParameter'
+import * as numberParameter from './internal/numberParameter'
+import * as checkboxParameter from './internal/checkboxParameter'
 
 export const basicParameterTypeMap = new Map<
   string,
   ParameterWriter
 >([
   // internal
-  ['text', textParameter],
-  ['number', numberParameter],
-  ['checkbox', checkboxParameter],
-  ['select', selectParameter],
+  ['text', textParameter.basic],
+  ['number', numberParameter.basic],
+  ['checkbox', checkboxParameter.basic],
+  ['select', selectParameter.basic],
   ['intentTag', ({ id }) => initWriter([`  ${id}: unknown`])],
   // integrations (ideally these should be loaded from external packages)
   ['bigcommerceProduct', bigcommerce.basic],
@@ -30,10 +30,10 @@ export const enhancedParameterTypeMap = new Map<
   ParameterWriter
 >([
   // internal
-  ['text', textParameter],
-  ['number', numberParameter],
-  ['checkbox', checkboxParameter],
-  ['select', selectParameter],
+  ['text', textParameter.enhanced],
+  ['number', numberParameter.enhanced],
+  ['checkbox', checkboxParameter.enhanced],
+  ['select', selectParameter.enhanced],
   ['intentTag', ({ id }) => initWriter([`  ${id}: unknown`])],
   // integrations (ideally these should be loaded from external packages)
   ['bigcommerceProduct', bigcommerce.enhanced],
