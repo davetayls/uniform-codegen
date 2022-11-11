@@ -1,9 +1,5 @@
 import { ComponentDefinitionParameter } from '@uniformdev/canvas'
-import {
-  initWriter,
-  pushImport,
-  pushWriterLines,
-} from '../writer'
+import { initWriter, pushImport, pushLines } from '../writer'
 
 export function basic(param: ComponentDefinitionParameter) {
   return initWriter([
@@ -18,7 +14,7 @@ export function enhanced(param: ComponentDefinitionParameter) {
     '@uniformdev/canvas-bigcommerce',
     'bigcommerce'
   )
-  return pushWriterLines(writer, [
+  return pushLines(writer, [
     `  ${param.id}: bigcommerce.definitions['product_Full']`,
   ])
 }

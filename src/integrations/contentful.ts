@@ -1,11 +1,7 @@
 import { ComponentDefinitionParameter } from '@uniformdev/canvas'
 import { isEmpty } from 'lodash'
 import { AllowedContentType } from '../types'
-import {
-  initWriter,
-  pushImport,
-  pushWriterLines,
-} from '../writer'
+import { initWriter, pushImport, pushLines } from '../writer'
 
 export type ContentfulTypeConfig = {
   source: string
@@ -30,14 +26,12 @@ export function enhanced(param: ComponentDefinitionParameter) {
   const { typeConfig } =
     param as ComponentDefinitionParameter<ContentfulTypeConfig>
   if (!typeConfig || isEmpty(typeConfig?.allowedContentTypes)) {
-    return pushWriterLines(writer, [`  ${param.id}: unknown`])
+    return pushLines(writer, [`  ${param.id}: unknown`])
   } else {
     const types = typeConfig.allowedContentTypes
     const typesString = Object.keys(types)
       .map((t) => `contentfulCodegen.I${types[t].name}`)
       .join(' | ')
-    return pushWriterLines(writer, [
-      `  ${param.id}: ${typesString}`,
-    ])
+    return pushLines(writer, [`  ${param.id}: ${typesString}`])
   }
 }

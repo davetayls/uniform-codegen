@@ -88,7 +88,7 @@ export function pushImport(
   return writer
 }
 
-export function pushWriterLines(
+export function pushLines(
   writer: CodeWriterState,
   lines: Array<string | [number, string]>
 ) {

@@ -1,11 +1,7 @@
 import { ComponentDefinitionParameter } from '@uniformdev/canvas'
 import { isEmpty } from 'lodash'
 import { ParameterWriter } from '../types'
-import {
-  initWriter,
-  pushImport,
-  pushWriterLines,
-} from '../writer'
+import { initWriter, pushImport, pushLines } from '../writer'
 
 export type ContentfulTypeConfig = {
   source: string
@@ -38,7 +34,7 @@ export const enhanced: ParameterWriter = (
     param as ComponentDefinitionParameter<ContentfulTypeConfig>
 
   if (!typeConfig || isEmpty(typeConfig?.allowedModels)) {
-    return pushWriterLines(writer, [`${param.id}: unknown`])
+    return pushLines(writer, [`${param.id}: unknown`])
   } else {
     const modelTypesUnion = Object.keys(typeConfig.allowedModels)
       .map(
@@ -47,7 +43,7 @@ export const enhanced: ParameterWriter = (
       )
       .join(' | ')
 
-    return pushWriterLines(writer, [
+    return pushLines(writer, [
       `  ${param.id}: Array<${modelTypesUnion}>`,
     ])
   }
