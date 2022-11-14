@@ -1,6 +1,8 @@
 # uniform-codegen
 Unform-codegen generates Typescript types for your Uniform project's components. With this, you speed up the local development of your components.
 
+* [Introduction and Background Video](https://davetayls.me/blog/2022-11-03-uniform-codegen-project)
+
 # Installation
 
 Install `@davetayls/uniform-codegen` in your project using your preferred package manager. i.e.
