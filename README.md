@@ -19,13 +19,13 @@ To use the codegen, specify the generation command in the package.json file or u
 In `package.json`, add a new script command that generates types for your components:
 
 ```json
-"uniform-codegen": "uniform-codegen components <path-to-components-directory> <full-path-of-output-file>"
+"uniform:codegen": "uniform-codegen components <path-to-components-directory> <full-path-of-output-file>"
 ```
 
 An example is:
 
 ```json
-"uniform-codegen": "uniform-codegen components src/uniform/components src/generated/uniform-codegen-components.ts"
+"uniform:codegen": "uniform-codegen components src/uniform/components src/generated/uniform-codegen-components.ts"
 ```
 
 > Create the folder where the codegen will generate the output file if it doesn't exist.
@@ -35,7 +35,7 @@ Next, run the script command:
 ```shell
 # Using npm
 
-npm run uniform-codegen
+npm run uniform:codegen
 ```
 
 The command above will create a file in the specified directory. The file contains exported types for all components in the specified components directory.
