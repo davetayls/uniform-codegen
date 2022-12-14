@@ -10,7 +10,7 @@ export const basic: ParameterWriter = ({ id, typeConfig }) => {
   const { required } =
     (typeConfig as NumberParameter['typeConfig']) ?? {}
   return initWriter([
-    `  ${id}${required ? '?' : ''}: ComponentParameter<string>`,
+    `  ${id}${required ? '?' : ''}: ComponentParameter<number>`,
   ])
 }
 export const enhanced: ParameterWriter = ({
@@ -19,5 +19,5 @@ export const enhanced: ParameterWriter = ({
 }) => {
   const { required } =
     (typeConfig as NumberParameter['typeConfig']) ?? {}
-  return initWriter([`  ${id}${required ? '?' : ''}: string`])
+  return initWriter([`  ${id}${required ? '?' : ''}: number`])
 }
