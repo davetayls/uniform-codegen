@@ -18,13 +18,43 @@ export function basicComponentWriter(
     'ComponentParameter',
     'ComponentInstance',
   ])
+  pushImport(imports, '@uniformdev/canvas-react', [
+    'ComponentProps',
+  ])
   const componentPrefix = `${idCase(data.id)}Component`
   return mergeWriters([
     imports,
+    writeComponentVariantsType(componentPrefix, data),
     writeComponentFieldsType(componentPrefix, data),
     writeComponentEnhancedType(componentPrefix, data),
+    writeComponentPropsType(componentPrefix, data),
     writeComponentInstanceType(componentPrefix, data),
   ])
+}
+
+function writeComponentVariantsType(
+  componentPrefix: string,
+  { variants }: ComponentData
+): CodeWriterState {
+  let writer = initWriter()
+  if (variants) {
+    const variantTypeName = (id: string) =>
+      `${componentPrefix}Variant${idCase(id)}`
+    pushLines(
+      writer,
+      variants.map(
+        ({ id }) =>
+          `export type ${variantTypeName(id)} = '${id}'`
+      )
+    )
+    pushLines(writer, [
+      `export type ${componentPrefix}Variants = `,
+    ])
+    pushLines(writer, [
+      variants.map(({ id }) => variantTypeName(id)).join(' | '),
+    ])
+  }
+  return writer
 }
 
 function writeComponentFieldsType(
@@ -54,6 +84,17 @@ function writeComponentEnhancedType(
     ...parameters.map((param) => parameterLine(param, true)),
   ])
   pushLines(writer, ['}'])
+  return writer
+}
+
+function writeComponentPropsType(
+  componentPrefix: string,
+  data: ComponentData
+): CodeWriterState {
+  let writer = initWriter()
+  pushLines(writer, [
+    `export type ${componentPrefix}Props = ComponentProps<${componentPrefix}EnhancedFields>`,
+  ])
   return writer
 }
 

@@ -1,6 +1,7 @@
 import {
   ComponentDefinitionParameter,
   ComponentDefinitionSlot,
+  ComponentDefinitionVariant,
 } from '@uniformdev/canvas'
 import { CodeWriterState } from './writer'
 
@@ -11,6 +12,7 @@ export type ComponentData = {
   id: string
   parameters: ComponentDefinitionParameter[]
   slots?: ComponentDefinitionSlot[]
+  variants?: ComponentDefinitionVariant[]
 }
 export type ParameterWriter = (
   param: ComponentDefinitionParameter
